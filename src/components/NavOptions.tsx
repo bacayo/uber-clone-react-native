@@ -1,4 +1,4 @@
-import { FlatList, ListRenderItem, View, StyleSheet } from 'react-native';
+import { FlatList, ListRenderItem } from 'react-native';
 import React from 'react';
 import { DataInterface } from '../types';
 import NavCard from './NavCard';
@@ -23,16 +23,13 @@ const NavOptions = () => {
     <NavCard item={item} />
   );
   return (
-    <View style={styles.container}>
-      <FlatList data={data} renderItem={renderOptions} horizontal />
-    </View>
+    <FlatList
+      data={data}
+      renderItem={renderOptions}
+      numColumns={2}
+      automaticallyAdjustKeyboardInsets={true}
+    />
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    marginLeft: 20,
-  },
-});
 
 export default NavOptions;

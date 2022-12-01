@@ -5,12 +5,14 @@ export default StyleSheet.create({
     flex: 1,
   },
   imageContainer: {
-    padding: 20,
-    height: '10%',
+    paddingLeft: 20,
+    // // height: '10%',
+    // borderWidth: 1,
+    // borderColor: 'green',
   },
   uberLogo: {
-    width: '40%',
-    height: '100%',
+    width: 100,
+    height: 100,
     resizeMode: 'contain',
   },
 });
