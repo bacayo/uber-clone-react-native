@@ -5,6 +5,9 @@ import org.apache.tools.ant.taskdefs.condition.Os
 
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
 
+// react native config google maps api key
+apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
+
 /**
  * The react.gradle file registers a task for each build variant (e.g. bundleDebugJsAndAssets
  * and bundleReleaseJsAndAssets).
