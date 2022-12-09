@@ -4,7 +4,14 @@ import { RootState } from '../store';
 
 const initialState: NavInterface = {
   destination: null,
-  origin: null,
+  // origin: null,
+  origin: {
+    description: undefined,
+    location: {
+      lat: 0,
+      lng: 0,
+    },
+  },
   travelTimeInformation: null,
 };
 

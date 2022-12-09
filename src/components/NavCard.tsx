@@ -5,6 +5,8 @@ import Icon from 'react-native-vector-icons/Entypo';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types';
+import { useAppSelector } from '../hooks/hooks';
+import { RootState } from '../redux/store';
 
 type Props = {
   item: {
@@ -17,6 +19,7 @@ type Props = {
 
 const NavCard = ({ item }: Props) => {
   const { colors } = useTheme();
+  const { origin } = useAppSelector((state: RootState) => state.navSlice);
 
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
@@ -28,8 +31,17 @@ const NavCard = ({ item }: Props) => {
 
   return (
     <TouchableOpacity
+      disabled={!origin.description}
       onPress={onPress}
-      style={[styles.container, { backgroundColor: colors.primary }]}>
+      style={[
+        styles.container,
+        {
+          backgroundColor: !origin.description
+            ? colors.disabled
+            : colors.primary,
+        },
+        !origin.description && styles.disabled,
+      ]}>
       <Image style={styles.image} source={{ uri: item.image }} />
       <Text style={[styles.title, { color: colors.text }]}>{item.title}</Text>
       <Icon
@@ -51,6 +63,9 @@ const styles = StyleSheet.create({
     paddingLeft: 24,
     paddingBottom: 32,
     paddingTop: 16,
+  },
+  disabled: {
+    opacity: 0.5,
   },
   image: {
     width: 120,

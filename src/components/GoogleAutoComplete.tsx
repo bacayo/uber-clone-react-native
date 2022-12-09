@@ -1,27 +1,37 @@
 import React from 'react';
-import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import {
+  GooglePlaceData,
+  GooglePlaceDetail,
+  GooglePlacesAutocomplete,
+} from 'react-native-google-places-autocomplete';
 import { GOOGLE_MAPS_APIKEY } from '@env';
 import { useTheme } from 'react-native-paper';
-import { useAppDispatch } from '../hooks/hooks';
-import { setDestination, setOrigin } from '../redux/slices/navSlice';
+// import { useAppDispatch } from '../hooks/hooks';
+// import { setDestination, setOrigin } from '../redux/slices/navSlice';
 
-const GoogleAutoComplete = () => {
+type Props = {
+  placeholder: string;
+  onPress: (data: GooglePlaceData, details: GooglePlaceDetail | null) => void;
+};
+
+const GoogleAutoComplete = ({ placeholder, onPress }: Props) => {
   const { colors } = useTheme();
 
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
 
   return (
     <GooglePlacesAutocomplete
-      onPress={(data, details = null) => {
-        dispatch(
-          setOrigin({
-            location: details?.geometry.location,
-            description: data.description,
-          }),
-        );
-        dispatch(setDestination(null));
-      }}
-      placeholder="Where From?"
+      // onPress={(data, details = null) => {
+      //   dispatch(
+      //     setOrigin({
+      //       location: details?.geometry.location,
+      //       description: data.description,
+      //     }),
+      //   );
+      //   dispatch(setDestination(null));
+      // }}
+      onPress={onPress}
+      placeholder={placeholder}
       // nearbyPlacesAPI="GooglePlacesSearch"
       fetchDetails={true}
       minLength={2}

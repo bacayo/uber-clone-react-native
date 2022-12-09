@@ -1,6 +1,20 @@
 export interface NavInterface {
-  origin: string | null;
-  destination: string | null;
+  // origin: string | null;
+  origin: {
+    description: string | undefined;
+    location: {
+      lat: number;
+      lng: number;
+    };
+  };
+  // destination: string | null;
+  destination: {
+    location: {
+      lat: number;
+      lng: number;
+    };
+    description: string | undefined;
+  };
   travelTimeInformation: string | null;
 }
 
